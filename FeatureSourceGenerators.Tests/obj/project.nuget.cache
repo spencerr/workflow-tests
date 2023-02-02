@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Z/gYnyXm2/vg6gkTVS2yG0jN2CxVVAiyn/I35KLSxPQtH+lwdMzBYCVSHc6WQsfG5v0eX0cCQD+bgyJu5ppESw==",
+  "dgSpecHash": "9Evtmx3R+ssJPg3EINYIbYQ8sz/wFwz9DITHTpt3mH47Q1vT4bOwKgRc+P0+I2JQGC9B00Nr2v/abej10tgY+g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Spencer\\Documents\\GitHub\\feature-source-generators\\FeatureSourceGenerators\\FeatureSourceGenerators.Tests\\FeatureSourceGenerators.Tests.csproj",
+  "projectFilePath": "C:\\Users\\Spencer\\Documents\\GitHub\\workflow-tests\\FeatureSourceGenerators.Tests\\FeatureSourceGenerators.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Spencer\\.nuget\\packages\\coverlet.collector\\3.1.0\\coverlet.collector.3.1.0.nupkg.sha512",
     "C:\\Users\\Spencer\\.nuget\\packages\\diffengine\\8.4.5\\diffengine.8.4.5.nupkg.sha512",
