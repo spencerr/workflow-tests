@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "XK5GYVfeX33eMzt9cExkISr4c+FUPm2w+da8ZmQibvlP7GehG6WNS/54KyOiPyENGdTBW1I/PMS6vrLP1feBrA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Spencer\\Documents\\GitHub\\feature-source-generators\\FeatureSourceGenerators\\FeatureSourceGenerators.Example\\FeatureSourceGenerators.Example.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Spencer\\.nuget\\packages\\fluentvalidation\\11.4.0\\fluentvalidation.11.4.0.nupkg.sha512",
+    "C:\\Users\\Spencer\\.nuget\\packages\\mediatr\\11.1.0\\mediatr.11.1.0.nupkg.sha512",
+    "C:\\Users\\Spencer\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
