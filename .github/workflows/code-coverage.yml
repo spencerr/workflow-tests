@@ -49,23 +49,18 @@ jobs:
     - name: Write to Job Summary
       run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
 
-    - name: Create code coverage report
-      if: success() || failure()
-      run: |
-        dotnet tool install -g dotnet-reportgenerator-globaltool
-        reportgenerator -reports:coverage/**/coverage.cobertura.xml -targetdir:${{github.workspace}}/CodeCoverage -reporttypes:'Cobertura'
-
-    - name: Upload reports
-      uses: actions/upload-artifact@v2
-      if: success() || failure()
+    - name: Create Code Coverage Report
+      uses: danielpalme/ReportGenerator-GitHub-Action@5.1.16
       with:
-        name: 'Code Coverage'
-        path: |
-          ${{github.workspace}}/CodeCoverage
+        reports: coverage/**/coverage.cobertura.xml
+        targetdir: ${{github.workspace}}/code-coverage
+        reporttypes: 'MarkdownSummaryGithub'
+        tag: '${{ github.run_number }}_${{ github.run_id }}'
+        toolpath: 'reportgeneratortool'
 
     - name: Add Coverage PR Comment
       uses: marocchino/sticky-pull-request-comment@v2
       if: github.event_name == 'pull_request' && (success() || failure())
       with:
         recreate: true
-        path: code-coverage-results.md
+        path: code-coverage/Summary.md
