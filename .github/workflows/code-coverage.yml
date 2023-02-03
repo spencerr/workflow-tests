@@ -29,7 +29,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: ${{ steps.yaml-data.outputs.data.dotnet-version }}
+        dotnet-version: ${{ fromJson(steps.yaml-data.outputs.data).dotnet-version }}
 
     - name: dotnet build
       working-directory: ${{ inputs.source }}
