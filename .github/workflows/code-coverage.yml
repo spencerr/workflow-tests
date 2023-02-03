@@ -20,9 +20,11 @@ jobs:
       uses: the-coding-turtle/ga-yaml-parser@v0.1.2
       with:
         file: './sln.build.yml'
+        path: 'config'
 
     - name: Display read-yaml output
       run: |
+        echo "${{ toJSON(steps.configuration.outputs) }}"
         echo "dotnet version: ${{ steps.configuration.outputs.dotnet_version }}"
         echo "node version: ${{ steps.configuration.outputs.node_version }}"
 
