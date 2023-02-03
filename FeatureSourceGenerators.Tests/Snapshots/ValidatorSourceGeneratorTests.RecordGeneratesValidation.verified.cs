@@ -1,4 +1,5 @@
 ﻿//HintName: GenerateMediatorAttribute.g.cs
+
 namespace FeatureSourceGenerators
 {
     [System.AttributeUsage(System.AttributeTargets.Class)]
