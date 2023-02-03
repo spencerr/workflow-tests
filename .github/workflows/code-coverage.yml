@@ -61,7 +61,7 @@ jobs:
       with:
         name: 'Code Coverage'
         path: |
-          ${{github.workspace}}/report
+          ${{github.workspace}}/CodeCoverage
 
     - name: Add Coverage PR Comment
       uses: marocchino/sticky-pull-request-comment@v2
