@@ -22,6 +22,9 @@ jobs:
         file: './sln.build.yml'          # File to read from
         key-path: '["dotnet-version"]'
 
+    - name: Display read-yaml output
+      run: echo "${{ steps.yaml-data.outputs.data }}"
+
     # Setup .NET Core SDK
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3
