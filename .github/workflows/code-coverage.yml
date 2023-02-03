@@ -20,7 +20,7 @@ jobs:
       uses: jbutcher5/read-yaml@1.6
       with:
         file: './sln.build.yml'          # File to read from
-        key-path: '["dotnet-version"]'
+        key-path: '["sln"]'
 
     - name: Display read-yaml output
       run: echo "${{ steps.yaml-data.outputs.data }}"
