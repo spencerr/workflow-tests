@@ -17,10 +17,9 @@ jobs:
 
     - name: Read Solution Configuration
       id: configuration
-      uses: the-coding-turtle/ga-yaml-parser@v0.1.2
+      uses: ActionsTools/read-json-action@main
       with:
-        file: './sln.build.yml'
-        path: 'config'
+        file_path: "sln.build.json"
 
     - name: Display read-yaml output
       run: |
@@ -36,6 +35,7 @@ jobs:
 
     - name: Setup Node
       uses: actions/setup-node@v3
+      if: ${{ steps.configuration.outputs.node_version != '' }}
       with:
         node-version: ${{ steps.configuration.outputs.node_version }}
 
