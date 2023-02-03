@@ -17,13 +17,12 @@ jobs:
 
     - name: Read Solution Configuration
       id: configuration
-      uses: ActionsTools/read-json-action@main
+      uses: the-coding-turtle/ga-yaml-parser@v0.1.2
       with:
-        file_path: "sln.build.json"
+        file: './sln.build.yml'
 
     - name: Display read-yaml output
       run: |
-        echo "${{ toJSON(steps.configuration.outputs) }}"
         echo "dotnet version: ${{ steps.configuration.outputs.dotnet_version }}"
         echo "node version: ${{ steps.configuration.outputs.node_version }}"
 
@@ -35,7 +34,7 @@ jobs:
 
     - name: Setup Node
       uses: actions/setup-node@v3
-      if: ${{ steps.configuration.outputs.node_version != '' }}
+      if: steps.configuration.outputs.node_version != ''
       with:
         node-version: ${{ steps.configuration.outputs.node_version }}
 

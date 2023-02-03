@@ -1,2 +1,2 @@
-dotnet_version: '3.1.x'
-nuget_version: '16.15.1'
+dotnet_version: 3.1.x
+node_version: 16.15.1
