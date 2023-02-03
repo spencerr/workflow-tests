@@ -58,7 +58,7 @@ jobs:
       run: |
         dotnet tool install -g dotnet-reportgenerator-globaltool
         reportgenerator -reports:coverage/**/coverage.cobertura.xml \
-          -targetdir:${{github.workspace}}/CodeCoverage \
+          -targetdir:${{github.workspace}}/code-coverage \
           -reporttypes:'MarkdownSummaryGithub'
 
     - name: Summary - Write Basic Code Coverage
