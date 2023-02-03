@@ -22,7 +22,9 @@ jobs:
         file: './sln.build.yml'
 
     - name: Display read-yaml output
-      run: echo "${{ toJSON(steps.configuration.outputs) }}"
+      run: |
+        echo "dotnet version: ${{ steps.configuration.outputs.dotnet_version }}"
+        echo "node version: ${{ steps.configuration.outputs.node_version }}"
 
     # Setup .NET Core SDK
     - name: Setup .NET Core
@@ -32,7 +34,6 @@ jobs:
 
     - name: Setup Node
       uses: actions/setup-node@v3
-      if: steps.configuration.outputs.node_version != ''
       with:
         node-version: ${{ steps.configuration.outputs.node_version }}
 
