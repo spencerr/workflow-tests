@@ -32,7 +32,7 @@ jobs:
 
     - name: Setup Node
       uses: actions/setup-node@v3
-      if: steps.sln-config.outputs.node-version != ''
+      if: ${{ steps.sln-config.outputs.node-version != '' }}
       with:
         node-version: ${{ steps.sln-config.outputs.node-version }}
 
@@ -41,7 +41,7 @@ jobs:
       run: |
         dotnet restore
         dotnet build -c 'Release' -p 'any'
-    
+
     - name: dotnet test
       working-directory: ${{ inputs.source }}
       run: |
@@ -81,7 +81,3 @@ jobs:
 
     - name: Summary - Write Code Coverage Report
       run: cat code-coverage/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
-
-    
-
-    
