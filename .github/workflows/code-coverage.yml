@@ -16,25 +16,25 @@ jobs:
         fetch-depth: 0
 
     - name: Read Solution Configuration
-      id: sln-config
+      id: configuration
       uses: the-coding-turtle/ga-yaml-parser@v0.1.2
       with:
         file: './sln.build.yml'
 
     - name: Display read-yaml output
-      run: echo "${{ toJSON(steps.sln-config.outputs) }}"
+      run: echo "${{ toJSON(steps.configuration.outputs) }}"
 
     # Setup .NET Core SDK
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: ${{ steps.sln-config.outputs.dotnet-version }}
+        dotnet-version: ${{ steps.configuration.outputs.dotnet_version }}
 
     - name: Setup Node
       uses: actions/setup-node@v3
-      if: ${{ steps.sln-config.outputs.node-version != '' }}
+      if: ${{ steps.configuration.outputs.node_version != '' }}
       with:
-        node-version: ${{ steps.sln-config.outputs.node-version }}
+        node-version: ${{ steps.configuration.outputs.node_version }}
 
     - name: dotnet build
       working-directory: ${{ inputs.source }}
