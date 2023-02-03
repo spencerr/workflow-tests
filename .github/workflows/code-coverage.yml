@@ -15,21 +15,26 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Run read-yaml action
-      id: yaml-data
-      uses: jbutcher5/read-yaml@1.6
+    - name: Read Solution Configuration
+      id: sln-config
+      uses: the-coding-turtle/ga-yaml-parser@v0.1.2
       with:
-        file: './sln.build.yml'          # File to read from
-        key-path: '["sln"]'
+        file: './sln.build.yml'
 
     - name: Display read-yaml output
-      run: echo "${{ steps.yaml-data.outputs.data }}"
+      run: echo "${{ steps.sln-config.outputs }}"
 
     # Setup .NET Core SDK
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: ${{ fromJson(steps.yaml-data.outputs.data).dotnet-version }}
+        dotnet-version: ${{ steps.sln-config.outputs.dotnet-version }}
+
+    - name: Setup .NET Core
+      uses: actions/setup-node@v3
+      if: steps.sln-config.outputs.node-version != ''
+      with:
+        node-version: ${{ steps.sln-config.outputs.node-version }}
 
     - name: dotnet build
       working-directory: ${{ inputs.source }}
