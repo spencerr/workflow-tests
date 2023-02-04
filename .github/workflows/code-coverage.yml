@@ -50,7 +50,6 @@ jobs:
         dotnet test -c 'Release' --no-build \
           --logger "trx;LogFileName=dotnet-test.trx" \
           --results-directory ./coverage \
-          --verbosity normal \
           --collect:"XPlat Code Coverage"
 
     - name: Code Coverage - Create Summary
