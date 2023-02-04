@@ -1,1 +1,5 @@
 dotnet-version: 3.1.x
+node-version: 16.15.1
+service-projects:
+  - FeatureSourceGenerators/FeatureSourceGenerators.csproj
+  - FeatureSourceGenerator.Example/FeatureSourceGenerators.Example.csproj
