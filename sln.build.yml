@@ -3,3 +3,4 @@ node-version: '16.15.1'
 service-projects:
   - FeatureSourceGenerators/FeatureSourceGenerators.csproj
   - FeatureSourceGenerators.Example/FeatureSourceGenerators.Example.csproj
+unit-test-project: FeatureSourceGenerators.Test/FeatureSourceGenerators.Test.csproj
