@@ -132,7 +132,7 @@ jobs:
     needs: code-coverage
     strategy:
       matrix:
-        project: ${{ needs.code-coverage.outputs.service-projects }}
+        project: ${{ fromJSON(needs.code-coverage.outputs.service-projects) }}
     steps:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
