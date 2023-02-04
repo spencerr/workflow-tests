@@ -140,6 +140,11 @@ jobs:
       matrix:
         project: ${{ fromJSON(needs.code-coverage.outputs.service-projects) }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         if: needs.code-coverage.outputs.dotnet-version != ''
