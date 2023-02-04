@@ -28,7 +28,7 @@ jobs:
       with:
         file: sln.build.yml
         dotnet-version: '"dotnet-version"'
-        service-projects: '"service-projects[]"'
+        service-projects: '"service-projects"[]'
 
     - name: Display read-yaml output
       run: |
