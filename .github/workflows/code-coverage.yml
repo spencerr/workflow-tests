@@ -30,7 +30,6 @@ jobs:
 
       - name: Display Configuration
         run: |
-          dotnet_version
           echo "${{ toJSON(steps.configuration.outputs) }}"
           echo "dotnet version: ${{ steps.configuration.outputs.dotnet-version }}"
           echo "node version: ${{ steps.configuration.outputs.node-version }}"
