@@ -36,10 +36,10 @@ jobs:
           echo "service projects: ${{ steps.configuration.outputs.service-projects }}"
           echo "unit test project: ${{ steps.configuration.outputs.unit-test-project }}"
 
-          echo "dotnet-version=${{ steps.configuration.outputs.dotnet-version }}" >> $GITHUB_OUTPUT
-          echo "node-version=${{ steps.configuration.outputs.node-version }}" >> $GITHUB_OUTPUT
-          echo "service-projects=${{ steps.configuration.outputs.service-projects }}" >> $GITHUB_OUTPUT
-          echo "unit-test-project=${{ steps.configuration.outputs.unit-test-project }}" >> $GITHUB_OUTPUT
+          echo 'dotnet-version=${{ steps.configuration.outputs.dotnet-version }}' >> $GITHUB_OUTPUT
+          echo 'node-version=${{ steps.configuration.outputs.node-version }}' >> $GITHUB_OUTPUT
+          echo 'service-projects=${{ toJSON(steps.configuration.outputs.service-projects) }}' >> $GITHUB_OUTPUT
+          echo 'unit-test-project=${{ steps.configuration.outputs.unit-test-project }}' >> $GITHUB_OUTPUT
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
