@@ -11,8 +11,8 @@ jobs:
   code-coverage:
     runs-on: ubuntu-latest
     outputs:
-      dotnet-version: ${{ steps.configuration.putputs.dotnet-version }}
-      service-projects: ${{ steps.configuration.putputs.service-projects }}
+      dotnet-version: ${{ steps.configuration.outputs.dotnet_version }}
+      service-projects: ${{ steps.configuration.outputs.service_projects }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -30,16 +30,17 @@ jobs:
 
       - name: Display Configuration
         run: |
+          dotnet_version
           echo "${{ toJSON(steps.configuration.outputs) }}"
           echo "dotnet version: ${{ steps.configuration.outputs.dotnet-version }}"
           echo "node version: ${{ steps.configuration.outputs.node-version }}"
           echo "service projects: ${{ steps.configuration.outputs.service-projects }}"
           echo "unit test project: ${{ steps.configuration.outputs.unit-test-project }}"
 
-          echo 'dotnet-version=${{ steps.configuration.outputs.dotnet-version }}' >> $GITHUB_OUTPUT
-          echo 'node-version=${{ steps.configuration.outputs.node-version }}' >> $GITHUB_OUTPUT
-          echo 'service-projects=${{ toJSON(steps.configuration.outputs.service-projects) }}' >> $GITHUB_OUTPUT
-          echo 'unit-test-project=${{ steps.configuration.outputs.unit-test-project }}' >> $GITHUB_OUTPUT
+          echo 'dotnet_version=${{ steps.configuration.outputs.dotnet-version }}' >> $GITHUB_OUTPUT
+          echo 'node_version=${{ steps.configuration.outputs.node-version }}' >> $GITHUB_OUTPUT
+          echo 'service_projects=${{ toJSON(steps.configuration.outputs.service-projects) }}' >> $GITHUB_OUTPUT
+          echo 'unit_test_project=${{ steps.configuration.outputs.unit-test-project }}' >> $GITHUB_OUTPUT
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
