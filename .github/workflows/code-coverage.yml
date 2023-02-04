@@ -53,7 +53,8 @@ jobs:
     - name: dotnet build
       working-directory: ${{ inputs.source }}
       run: |
-        for project in ${{ steps.configuration2.outputs.service-projects }} do
+        projects='${{ steps.configuration2.outputs.service-projects }}'
+        for project in $(echo "${projects}" | jq -r '.[]');  do
           dotnet build -c 'Release' -p 'any'
         done
 
