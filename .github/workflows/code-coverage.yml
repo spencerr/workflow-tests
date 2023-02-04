@@ -47,7 +47,7 @@ jobs:
     - name: dotnet test
       working-directory: ${{ inputs.source }}
       run: |
-        dotnet test -c 'Release' --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
+        dotnet test -c 'Release' --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage --logger "trx;logfilename=coverage/dotnet-test.trx"
 
     - name: Code Coverage - Create Summary
       uses: irongut/CodeCoverageSummary@v1.3.0
@@ -63,14 +63,7 @@ jobs:
         output: both
         thresholds: '60 80'
 
-    - name: Code Coverage - Add PR Comment
-      uses: marocchino/sticky-pull-request-comment@v2
-      if: github.event_name == 'pull_request' && (success() || failure())
-      with:
-        recreate: true
-        path: code-coverage-results.md
-
-    - name: Code Coverage - Create Report
+    - name: Code Coverage - Create Cobertura Report
       if: success() || failure()
       run: |
         dotnet tool install -g dotnet-reportgenerator-globaltool
@@ -78,8 +71,25 @@ jobs:
           -targetdir:${{github.workspace}}/code-coverage \
           -reporttypes:'MarkdownSummaryGithub'
 
+    - name: Code Coverage - Add PR Comment
+      uses: marocchino/sticky-pull-request-comment@v2
+      if: github.event_name == 'pull_request' && (success() || failure())
+      with:
+        recreate: true
+        path: code-coverage-results.md
+
+    - name: Code Coverage - Add TRX Report
+      uses: dorny/test-reporter@v1
+      if: success() || failure()
+      with:
+        name: Test Coverage
+        path: coverage/dotnet-test.trx
+        reporter: dotnet-trx
+
     - name: Summary - Write Basic Code Coverage
+      if: success() || failure()
       run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
 
-    - name: Summary - Write Code Coverage Report
-      run: cat code-coverage/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
+    - name: Summary - Write Cobertura Report
+      if: success() || failure()
+      run: cat code-coverage/SummaryGithub.md >> $GITHUB_STEP_SUMMARY    
