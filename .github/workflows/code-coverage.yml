@@ -53,6 +53,13 @@ jobs:
     - name: dotnet build
       working-directory: ${{ inputs.source }}
       run: |
+        for project in ${{ steps.configuration2.outputs.service-projects }} do
+          dotnet build project -c 'Release' -p 'any'
+        done
+
+    - name: dotnet build
+      working-directory: ${{ inputs.source }}
+      run: |
         dotnet restore
         dotnet build -c 'Release' -p 'any'
 
