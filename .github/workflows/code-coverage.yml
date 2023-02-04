@@ -27,8 +27,8 @@ jobs:
       uses: CumulusDS/get-yaml-paths-action@v1.0.1
       with:
         file: sln.build.yml
-        dotnet-version: dotnet-version
-        service-projects: service-projects[]
+        dotnet-version: '"dotnet-version"'
+        service-projects: '"service-projects[]"'
 
     - name: Display read-yaml output
       run: |
