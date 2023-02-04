@@ -21,8 +21,18 @@ jobs:
       with:
         file: './sln.build.yml'
 
+    - name: Read Configuration V2
+      id: configuration2
+      uses: CumulusDS/get-yaml-paths-action@v1.0.1
+      with:
+        file: sln.build.yml
+        dotnet-version: dotnet-version
+        service-projects: service-projects[]
+
     - name: Display read-yaml output
       run: |
+        echo "${{ toJSON(steps.configuration2.outputs) }}"
+        echo "Service Projects: ${{ toJSON(steps.configuration2.outputs.service-projects) }}"
         echo "${{ toJSON(steps.configuration.outputs) }}"
         echo "dotnet version: ${{ steps.configuration.outputs.dotnet-version }}"
         echo "node version: ${{ steps.configuration.outputs.node-version }}"
