@@ -4,6 +4,7 @@ on:
       - opened
       - reopened
       - ready_for_review
+      - synchronize
 
 jobs:
  # Generate a matrix with a directories which have changed files
