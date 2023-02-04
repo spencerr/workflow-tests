@@ -47,7 +47,11 @@ jobs:
     - name: dotnet test
       working-directory: ${{ inputs.source }}
       run: |
-        dotnet test -c 'Release' --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage --logger "trx;logfilename=coverage/dotnet-test.trx"
+        dotnet test -c 'Release' --no-build \
+          --logger "trx;LogFileName=dotnet-test.trx" \
+          --results-directory ./coverage \
+          --verbosity normal \
+          --collect:"XPlat Code Coverage"
 
     - name: Code Coverage - Create Summary
       uses: irongut/CodeCoverageSummary@v1.3.0
