@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jrEuo7BZPUhs7hDaMBe/wCGfJkZK8alfzfdvJhGKmRrvLZKbl+TmwC+hF5zxnRVAm3dpi03RSdPthnti2pMLQw==",
+  "dgSpecHash": "Cpm8CLpd2gmjdFPy6PBPGIUUjWlB2dogPK7qZWyydel2E5qiBCBcZdqFFvL4XOD1dN9xXFVcpSB99T38YKrY6g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Spencer\\Documents\\GitHub\\feature-source-generators\\FeatureSourceGenerators\\FeatureSourceGenerators\\FeatureSourceGenerators.csproj",
+  "projectFilePath": "C:\\Users\\Spencer\\Documents\\GitHub\\workflow-tests\\FeatureSourceGenerators\\FeatureSourceGenerators.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Spencer\\.nuget\\packages\\humanizer.core\\2.2.0\\humanizer.core.2.2.0.nupkg.sha512",
     "C:\\Users\\Spencer\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",

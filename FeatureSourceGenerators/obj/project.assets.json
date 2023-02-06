@@ -3132,11 +3132,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Spencer\\Documents\\GitHub\\feature-source-generators\\FeatureSourceGenerators\\FeatureSourceGenerators\\FeatureSourceGenerators.csproj",
+      "projectUniqueName": "C:\\Users\\Spencer\\Documents\\GitHub\\workflow-tests\\FeatureSourceGenerators\\FeatureSourceGenerators.csproj",
       "projectName": "FeatureSourceGenerators",
-      "projectPath": "C:\\Users\\Spencer\\Documents\\GitHub\\feature-source-generators\\FeatureSourceGenerators\\FeatureSourceGenerators\\FeatureSourceGenerators.csproj",
+      "projectPath": "C:\\Users\\Spencer\\Documents\\GitHub\\workflow-tests\\FeatureSourceGenerators\\FeatureSourceGenerators.csproj",
       "packagesPath": "C:\\Users\\Spencer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Spencer\\Documents\\GitHub\\feature-source-generators\\FeatureSourceGenerators\\FeatureSourceGenerators\\obj\\",
+      "outputPath": "C:\\Users\\Spencer\\Documents\\GitHub\\workflow-tests\\FeatureSourceGenerators\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Spencer\\Documents\\GitHub\\feature-source-generators\\FeatureSourceGenerators\\FeatureSourceGenerators.Tests\\FeatureSourceGenerators.Tests.csproj": {}
+    "C:\\Users\\Spencer\\Documents\\GitHub\\workflow-tests\\FeatureSourceGenerators.Tests\\FeatureSourceGenerators.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Spencer\\Documents\\GitHub\\feature-source-generators\\FeatureSourceGenerators\\FeatureSourceGenerators.Tests\\FeatureSourceGenerators.Tests.csproj": {
+    "C:\\Users\\Spencer\\Documents\\GitHub\\workflow-tests\\FeatureSourceGenerators.Tests\\FeatureSourceGenerators.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Spencer\\Documents\\GitHub\\feature-source-generators\\FeatureSourceGenerators\\FeatureSourceGenerators.Tests\\FeatureSourceGenerators.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\Spencer\\Documents\\GitHub\\workflow-tests\\FeatureSourceGenerators.Tests\\FeatureSourceGenerators.Tests.csproj",
         "projectName": "FeatureSourceGenerators.Tests",
-        "projectPath": "C:\\Users\\Spencer\\Documents\\GitHub\\feature-source-generators\\FeatureSourceGenerators\\FeatureSourceGenerators.Tests\\FeatureSourceGenerators.Tests.csproj",
+        "projectPath": "C:\\Users\\Spencer\\Documents\\GitHub\\workflow-tests\\FeatureSourceGenerators.Tests\\FeatureSourceGenerators.Tests.csproj",
         "packagesPath": "C:\\Users\\Spencer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Spencer\\Documents\\GitHub\\feature-source-generators\\FeatureSourceGenerators\\FeatureSourceGenerators.Tests\\obj\\",
+        "outputPath": "C:\\Users\\Spencer\\Documents\\GitHub\\workflow-tests\\FeatureSourceGenerators.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -34,8 +34,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Spencer\\Documents\\GitHub\\feature-source-generators\\FeatureSourceGenerators\\FeatureSourceGenerators\\FeatureSourceGenerators.csproj": {
-                "projectPath": "C:\\Users\\Spencer\\Documents\\GitHub\\feature-source-generators\\FeatureSourceGenerators\\FeatureSourceGenerators\\FeatureSourceGenerators.csproj"
+              "C:\\Users\\Spencer\\Documents\\GitHub\\workflow-tests\\FeatureSourceGenerators\\FeatureSourceGenerators.csproj": {
+                "projectPath": "C:\\Users\\Spencer\\Documents\\GitHub\\workflow-tests\\FeatureSourceGenerators\\FeatureSourceGenerators.csproj"
               }
             }
           }
@@ -109,14 +109,14 @@
         }
       }
     },
-    "C:\\Users\\Spencer\\Documents\\GitHub\\feature-source-generators\\FeatureSourceGenerators\\FeatureSourceGenerators\\FeatureSourceGenerators.csproj": {
+    "C:\\Users\\Spencer\\Documents\\GitHub\\workflow-tests\\FeatureSourceGenerators\\FeatureSourceGenerators.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Spencer\\Documents\\GitHub\\feature-source-generators\\FeatureSourceGenerators\\FeatureSourceGenerators\\FeatureSourceGenerators.csproj",
+        "projectUniqueName": "C:\\Users\\Spencer\\Documents\\GitHub\\workflow-tests\\FeatureSourceGenerators\\FeatureSourceGenerators.csproj",
         "projectName": "FeatureSourceGenerators",
-        "projectPath": "C:\\Users\\Spencer\\Documents\\GitHub\\feature-source-generators\\FeatureSourceGenerators\\FeatureSourceGenerators\\FeatureSourceGenerators.csproj",
+        "projectPath": "C:\\Users\\Spencer\\Documents\\GitHub\\workflow-tests\\FeatureSourceGenerators\\FeatureSourceGenerators.csproj",
         "packagesPath": "C:\\Users\\Spencer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Spencer\\Documents\\GitHub\\feature-source-generators\\FeatureSourceGenerators\\FeatureSourceGenerators\\obj\\",
+        "outputPath": "C:\\Users\\Spencer\\Documents\\GitHub\\workflow-tests\\FeatureSourceGenerators\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

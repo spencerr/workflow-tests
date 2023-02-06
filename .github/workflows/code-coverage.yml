@@ -4,50 +4,154 @@ on:
       - opened
       - reopened
       - ready_for_review
+      - synchronize
 
 jobs:
  # Generate a matrix with a directories which have changed files
- code-coverage:
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
- 
-    # Setup .NET Core SDK
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 6.0.x
+  code-coverage:
+    runs-on: ubuntu-latest
+    outputs:
+      dotnet-version: ${{ steps.configuration.outputs.dotnet-version }}
+      service-projects: ${{ steps.configuration.outputs.service-projects }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-    - name: dotnet build
-      working-directory: ${{ inputs.source }}
-      run: |
-        dotnet restore
-        dotnet build -c 'Release' -p 'any'
+      - name: Read Configuration
+        id: configuration
+        uses: CumulusDS/get-yaml-paths-action@v1.0.1
+        with:
+          file: sln.build.yml
+          dotnet-version: '"dotnet-version"'
+          service-projects: '"service-projects"[]'
+          unit-test-project: '"unit-test-project"'
+
+      - name: Display Configuration
+        run: |
+          echo "${{ toJSON(steps.configuration.outputs) }}"
+          echo "dotnet version: ${{ steps.configuration.outputs.dotnet-version }}"
+          echo "node version: ${{ steps.configuration.outputs.node-version }}"
+          echo "service projects: ${{ steps.configuration.outputs.service-projects }}"
+          echo "unit test project: ${{ steps.configuration.outputs.unit-test-project }}"
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        if: steps.configuration.outputs.dotnet-version != ''
+        with:
+          dotnet-version: ${{ steps.configuration.outputs.dotnet-version }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        if: steps.configuration.outputs.node-version != ''
+        with:
+          node-version: ${{ steps.configuration.outputs.node-version }}
+
+      - name: Restore Solution
+        working-directory: ${{ inputs.source }}
+        run: |
+          dotnet restore
+
+      - name: Build - Service Projects
+        working-directory: ${{ inputs.source }}
+        if: steps.configuration.outputs.service-projects != ''
+        run: |
+          projects='${{ steps.configuration.outputs.service-projects }}'
+          for project in $(echo "${projects}" | jq -r '.[]');  do
+            dotnet build $project -c 'Release' -p 'any'
+          done
+
+      - name: Build - Solution
+        working-directory: ${{ inputs.source }}
+        run: |
+          dotnet restore
+          dotnet build -c 'Release' -p 'any'
+
+      - name: Test - Unit Tests
+        working-directory: ${{ inputs.source }}
+        run: |
+          dotnet test ${{ steps.configuration.outputs.unit-test-projects }} \
+            -c 'Release' --no-build \
+            --logger "trx;LogFileName=unit-test.trx" \
+            --results-directory ./coverage \
+            --collect:"XPlat Code Coverage"
+
+      - name: Code Coverage - Create Summary
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        if: success() || failure()
+        with:
+          filename: coverage/**/coverage.cobertura.xml
+          badge: true
+          fail_below_min: true
+          format: markdown
+          hide_branch_rate: false
+          hide_complexity: true
+          indicators: true
+          output: both
+          thresholds: '60 80'
+
+      - name: Code Coverage - Create Cobertura Report
+        if: success() || failure()
+        run: |
+          dotnet tool install -g dotnet-reportgenerator-globaltool
+          reportgenerator -reports:coverage/**/coverage.cobertura.xml \
+            -targetdir:${{github.workspace}}/code-coverage \
+            -reporttypes:'MarkdownSummaryGithub'
+
+      - name: Code Coverage - Add PR Comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: github.event_name == 'pull_request' && (success() || failure())
+        with:
+          recreate: true
+          path: code-coverage-results.md
+
+      - name: Code Coverage - Add TRX Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
+        with:
+          name: Test Coverage
+          path: coverage/unit-test.trx
+          reporter: dotnet-trx
+
+      - name: Summary - Write Basic Code Coverage
+        if: success() || failure()
+        run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
+
+      - name: Summary - Write Cobertura Report
+        if: success() || failure()
+        run: cat code-coverage/SummaryGithub.md >> $GITHUB_STEP_SUMMARY   
     
-    - name: dotnet test
-      working-directory: ${{ inputs.source }}
-      run: |
-        dotnet test -c 'Release' --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
+  output:
+    runs-on: ubuntu-latest
+    needs: code-coverage
+    steps:
+      - run: |
+          echo "${{ toJSON(needs.code-coverage.outputs) }}"
+          echo "dotnet version: ${{ needs.code-coverage.outputs.dotnet-version }}"
+          echo "node version: ${{ needs.code-coverage.outputs.node-version }}"
+          echo "service projects: ${{ needs.code-coverage.outputs.service-projects }}"
+          echo "unit test project: ${{ needs.code-coverage.outputs.unit-test-project }}"
 
-    - name: Code Coverage Report
-      uses: irongut/CodeCoverageSummary@v1.3.0
-      with:
-        filename: coverage/**/coverage.cobertura.xml
-        badge: true
-        fail_below_min: true
-        format: markdown
-        hide_branch_rate: false
-        hide_complexity: true
-        indicators: true
-        output: both
-        thresholds: '60 80'
+  matrix-build:
+    runs-on: ubuntu-latest
+    needs: code-coverage
+    strategy:
+      matrix:
+        project: ${{ fromJSON(needs.code-coverage.outputs.service-projects) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        if: needs.code-coverage.outputs.dotnet-version != ''
+        with:
+          dotnet-version: ${{ needs.code-coverage.outputs.dotnet-version }}
 
-    - name: Add Coverage PR Comment
-      uses: marocchino/sticky-pull-request-comment@v2
-      if: github.event_name == 'pull_request'
-      with:
-        recreate: true
-        path: code-coverage-results.md
+      - name: Build - Service Projects
+        working-directory: ${{ inputs.source }}
+        run: |
+          dotnet build ${{ matrix.project }} -c 'Release' -p 'any'
