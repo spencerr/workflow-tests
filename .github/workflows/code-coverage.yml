@@ -103,7 +103,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           id: dotnettest
           conclusion: ${{ steps.dotnettest.outcome }}
-          output_text_description_file: code-coverage/SummaryGithub.md
           fail-on-error: true
 
       - name: Code Coverage - Create Summary
