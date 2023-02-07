@@ -19,6 +19,16 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Prepare Check Runs
+        uses: dflydev/check-runs-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          checks: |
+            [
+              { "id": "dotnet-test", "name": "dotnet test" },
+            ]
+          status: "queued"
+
       - name: Read Configuration
         id: configuration
         uses: CumulusDS/get-yaml-paths-action@v1.0.1
@@ -68,7 +78,17 @@ jobs:
           dotnet restore
           dotnet build -c 'Release' -p 'any'
 
+
+      - name: Test - Unit Tests Starting
+        uses: dflydev/check-runs-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          id: dotnet-test
+          status: in_progress
+
       - name: Test - Unit Tests
+        id: dotnet-test
+        continue-on-error: true
         working-directory: ${{ inputs.source }}
         run: |
           dotnet test ${{ steps.configuration.outputs.unit-test-projects }} \
@@ -76,6 +96,14 @@ jobs:
             --logger "trx;LogFileName=unit-test.trx" \
             --results-directory ./coverage \
             --collect:"XPlat Code Coverage"
+
+      - name: Test - Unit Tests Conclusion
+        uses: dflydev/check-runs-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          id: dotnet-test
+          conclusion: ${{ steps.dotnet-test.outcome }}
+          fail-on-error: true
 
       - name: Code Coverage - Create Summary
         uses: irongut/CodeCoverageSummary@v1.3.0
@@ -121,6 +149,13 @@ jobs:
       - name: Summary - Write Cobertura Report
         if: success() || failure()
         run: cat code-coverage/SummaryGithub.md >> $GITHUB_STEP_SUMMARY   
+
+      - name: Clean up checks
+        if: always()
+        uses: dflydev/check-runs-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          conclusion: cancelled
     
   output:
     runs-on: ubuntu-latest
