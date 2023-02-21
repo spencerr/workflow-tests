@@ -35,16 +35,15 @@ jobs:
         with:
           file: sln.build.yml
           dotnet-version: '"dotnet-version"'
-          service-projects: '"service-projects"[]'
-          unit-test-project: '"unit-test-project"'
+          services: '"services"[]'
 
       - name: Display Configuration
         run: |
           echo "${{ toJSON(steps.configuration.outputs) }}"
           echo "dotnet version: ${{ steps.configuration.outputs.dotnet-version }}"
           echo "node version: ${{ steps.configuration.outputs.node-version }}"
-          echo "service projects: ${{ steps.configuration.outputs.service-projects }}"
-          echo "unit test project: ${{ steps.configuration.outputs.unit-test-project }}"
+          echo "services: ${{ steps.configuration.outputs.services }}"
+          echo "services: ${{ steps.configuration.outputs.services[0].unit-tests[0] }}"
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
