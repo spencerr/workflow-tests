@@ -1,0 +1,34 @@
+on:
+  workflow_call:
+    inputs: 
+      service-name:
+        required: true
+        type: string
+      unit-tests:
+        required: false
+        type: string
+
+jobs:
+ # Generate a matrix with a directories which have changed files
+  code-coverage:
+    runs-on: ubuntu-latest
+    outputs:
+      dotnet-version: ${{ steps.configuration.outputs.dotnet-version }}
+      services: ${{ steps.configuration.outputs.services }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Display Configuration
+        run: |
+          echo "${{ toJSON(inputs) }}"
+          
+      - name: Output - Unit Test Projects
+        if: inputs.unit-tests != ''
+        run: |
+          unit_tests='${{ inputs.unit-tests }}'
+          for unit_test in $(echo "${unit_tests}" | jq -r '.[]');  do
+            echo 'running tests for $unit_test'
+          done
