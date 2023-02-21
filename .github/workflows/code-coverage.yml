@@ -169,7 +169,7 @@ jobs:
 
   matrix-build:
     needs: code-coverage
-    uses: spencerr/workflow-tests/.github/workflows/reusable-workflow.yaml@checks
+    uses: spencerr/workflow-tests/.github/workflows/reusable-workflow.yml@checks
     strategy:
       matrix:
         service: ${{ fromJSON(needs.code-coverage.outputs.services) }}
