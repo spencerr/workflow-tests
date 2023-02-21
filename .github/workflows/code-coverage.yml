@@ -182,8 +182,8 @@ jobs:
       - name: Display Configuration
         run: |
           echo "${{ toJSON(matrix.service) }}"
-          echo "name: ${{ toJSON(matrix.service).name }}"
-          echo "unit-test 1: ${{ toJSON(matrix.service).unit-tests[0] }}"
+          echo "name: ${{ matrix.service.name }}"
+          echo "unit-test 1: ${{ matrix.service.unit-tests[0] }}"
           
       # - name: Setup .NET
       #   uses: actions/setup-dotnet@v3
