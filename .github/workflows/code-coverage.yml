@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       dotnet-version: ${{ steps.configuration.outputs.dotnet-version }}
-      service-projects: ${{ steps.configuration.outputs.service-projects }}
+      services: ${{ steps.configuration.outputs.services }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
