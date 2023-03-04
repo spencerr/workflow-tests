@@ -11,7 +11,6 @@ jobs:
   code-coverage:
     runs-on: ubuntu-latest
     outputs:
-      dotnet-version: ${{ steps.configuration.outputs.dotnet-version }}
       services: ${{ steps.configuration.outputs.services }}
     steps:
       - name: Checkout
@@ -38,8 +37,9 @@ jobs:
       matrix:
         service: ${{ fromJSON(needs.code-coverage.outputs.services) }}
     with:
-      solution-directory: matrix.service.solution-directory
-      service-project: matrix.service.service-project
-      service-name: matrix.service.name
-      unit-tests: matrix.service.unit-tests 
-      integration-tests: matrix.service.integration-tests 
+      solution-directory: ${{ matrix.service.solution-directory }}
+      service-project: ${{ matrix.service.service-project }}
+      service-name: ${{ matrix.service.name }}
+      unit-tests: ${{ matrix.service.unit-tests }}
+      integration-tests: ${{ matrix.service.integration-tests }}
+      dotnet-version: ${{ matrix.service.dotnet-version }}

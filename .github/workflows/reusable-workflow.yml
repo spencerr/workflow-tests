@@ -32,9 +32,9 @@ jobs:
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
-        if: steps.configuration.outputs.dotnet-version != ''
+        if: inputs.dotnet-version != ''
         with:
-          dotnet-version: ${{ steps.configuration.outputs.dotnet-version }}
+          dotnet-version: ${{ inputs.dotnet-version }}
 
       - name: Restore Solution
         working-directory: ${{ inputs.solution-directory }}
@@ -43,12 +43,9 @@ jobs:
 
       - name: Build - Service Projects
         working-directory: ${{ inputs.solution-directory }}
-        if: steps.configuration.outputs.service-projects != ''
+        if: inputs.service-project != ''
         run: |
-          projects='${{ steps.configuration.outputs.service-projects }}'
-          for project in $(echo "${projects}" | jq -r '.[]');  do
-            dotnet build $project -c 'Release' -p 'any'
-          done
+          dotnet build ${{ inputs.service-project }} -c 'Release' -p 'any'
 
       - name: Build - Solution
         working-directory: ${{ inputs.solution-directory }}
