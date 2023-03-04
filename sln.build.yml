@@ -4,7 +4,7 @@ node-version: 16.15.1
 services:
   - name: source-generator
     service-project: FeatureSourceGenerators.Example/FeatureSourceGenerators.Example.csproj
-    unit-tests: 'FullyQualifiedName\!~IntegrationTests'
-    integration-tests: 'FullyQualifiedName\~IntegrationTests'
+    unit-tests: 'FullyQualifiedName!~IntegrationTests'
+    integration-tests: 'FullyQualifiedName~IntegrationTests'
     solution-directory: './'
     dotnet-version: 6.0.x
