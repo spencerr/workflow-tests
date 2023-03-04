@@ -42,3 +42,5 @@ jobs:
       unit-tests: ${{ matrix.service.unit-tests }}
       integration-tests: ${{ matrix.service.integration-tests }}
       dotnet-version: ${{ matrix.service.dotnet-version }}
+      coverage-required: ${{ matrix.service.coverage-required }}
+      coverage-threshold: ${{ matrix.service.coverage-threshold }}

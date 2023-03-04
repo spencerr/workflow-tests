@@ -8,3 +8,5 @@ services:
     integration-tests: 'FullyQualifiedName~IntegrationTests'
     solution-directory: './'
     dotnet-version: 6.0.x
+    coverage-required: true
+    coverage-threshold: '60 80'
