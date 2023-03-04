@@ -134,4 +134,4 @@ jobs:
         if: success() || failure()
         with: 
           name: assets-for-download
-          path: code-coverage/HtmlSummary.html
+          path: code-coverage/summary.html
