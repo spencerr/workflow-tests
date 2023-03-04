@@ -31,4 +31,9 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\FeatureSourceGenerators\FeatureSourceGenerators.csproj" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Snapshots\" />
+	</ItemGroup>
+
 </Project>

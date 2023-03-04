@@ -4,5 +4,6 @@ node-version: 16.15.1
 services:
   - name: source-generator
     service-project: FeatureSourceGenerators.Example/FeatureSourceGenerators.Example.csproj
-    unit-tests: 
-     - FeatureSourceGenerators.Test/FeatureSourceGenerators.Test.csproj
+    unit-tests: 'FullyQualifiedName\!~IntegrationTests'
+    integration-tests: 'FullyQualifiedName\~IntegrationTests'
+    solution-directory: './'
