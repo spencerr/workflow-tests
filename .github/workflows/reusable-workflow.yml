@@ -65,7 +65,7 @@ jobs:
             -c 'Release' --no-build \
             /p:CollectCoverage=true \
             /p:CoverletOutputFormat=cobertura \
-            /p:CoverletOutput=./msbuild/coverage/ \
+            /p:CoverletOutput=msbuild/coverage/ \
             /p:Exclude="[FeatureSourceGenerators.*Tests*]*" \
 
       - name: Code Coverage - Create Summary
