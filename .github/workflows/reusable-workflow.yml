@@ -61,8 +61,7 @@ jobs:
         continue-on-error: true
         working-directory: ${{ inputs.solution-directory }}
         run: |
-          dotnet test \
-            --filter '${{ inputs.unit-tests }}'
+          dotnet test --filter '${{ inputs.unit-tests }}' \
             -c 'Release' --no-build \
             --logger "trx;LogFileName=unit-tests.trx" \
             --results-directory ./coverage \
@@ -87,8 +86,7 @@ jobs:
         continue-on-error: true
         working-directory: ${{ inputs.solution-directory }}
         run: |
-          dotnet test \
-            --filter '${{ inputs.integration-tests }}'
+          dotnet test --filter '${{ inputs.integration-tests }}'
             -c 'Release' --no-build
 
       - name: Code Coverage - Create Cobertura Report
