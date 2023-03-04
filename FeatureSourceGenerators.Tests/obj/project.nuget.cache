@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "9Evtmx3R+ssJPg3EINYIbYQ8sz/wFwz9DITHTpt3mH47Q1vT4bOwKgRc+P0+I2JQGC9B00Nr2v/abej10tgY+g==",
+  "dgSpecHash": "pGZ0EdbdEHmIlQJGrO4d6H9fwNvong83x4Pz3eKT4+8oJttVC6Zv9pQY3mrhKtu7goe2dUHmkNSNPY6/obCNsg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Spencer\\Documents\\GitHub\\workflow-tests\\FeatureSourceGenerators.Tests\\FeatureSourceGenerators.Tests.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Spencer\\.nuget\\packages\\coverlet.collector\\3.1.0\\coverlet.collector.3.1.0.nupkg.sha512",
+    "C:\\Users\\Spencer\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",
+    "C:\\Users\\Spencer\\.nuget\\packages\\coverlet.msbuild\\3.2.0\\coverlet.msbuild.3.2.0.nupkg.sha512",
     "C:\\Users\\Spencer\\.nuget\\packages\\diffengine\\8.4.5\\diffengine.8.4.5.nupkg.sha512",
     "C:\\Users\\Spencer\\.nuget\\packages\\emptyfiles\\2.8.0\\emptyfiles.2.8.0.nupkg.sha512",
     "C:\\Users\\Spencer\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.3\\microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",
