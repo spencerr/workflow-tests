@@ -23,7 +23,6 @@ jobs:
         uses: CumulusDS/get-yaml-paths-action@v1.0.1
         with:
           file: sln.build.yml
-          dotnet-version: '"dotnet-version"'
           services: '"services"[]'
 
       - name: Display Configuration

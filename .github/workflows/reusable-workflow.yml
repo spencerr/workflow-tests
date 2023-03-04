@@ -16,6 +16,9 @@ on:
       integration-tests:
         required: true
         type: string
+      dotnet-version:
+        required: true
+        type: string
 jobs:
  # Generate a matrix with a directories which have changed files
   code-coverage:
