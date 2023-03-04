@@ -107,13 +107,13 @@ jobs:
         with:
           filename: /code-coverage/Cobertura.xml
           badge: true
-          fail_below_min: inputs.coverage-required
+          fail_below_min: ${{ inputs.coverage-required }}
           format: markdown
           hide_branch_rate: false
           hide_complexity: true
           indicators: true
           output: both
-          thresholds: inputs.coverage-threshold    
+          thresholds: ${{ inputs.coverage-threshold }} 
 
       - name: Code Coverage - Add PR Comment
         uses: marocchino/sticky-pull-request-comment@v2
