@@ -63,9 +63,12 @@ jobs:
         run: |
           dotnet test --filter '${{ inputs.unit-tests }}' \
             -c 'Release' --no-build \
+            /p:CollectCoverage=true \
+            /p:CoverletOutputFormat=cobertura
+            /p:CoverletOutput='./coverage/'
+            /p:Exclude="[*.*Test*]*"
             --logger "trx;LogFileName=unit-tests.trx" \
-            --results-directory ./coverage \
-            --collect:"XPlat Code Coverage"
+            --results-directory ./coverage
 
       - name: Code Coverage - Create Summary
         uses: irongut/CodeCoverageSummary@v1.3.0
