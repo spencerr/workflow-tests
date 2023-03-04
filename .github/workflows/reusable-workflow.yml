@@ -133,5 +133,5 @@ jobs:
         uses: actions/upload-artifact@v2
         if: success() || failure()
         with: 
-          name: assets-for-download
+          name: code-coverage-html-report
           path: code-coverage/summary.html
