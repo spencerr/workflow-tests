@@ -112,7 +112,7 @@ jobs:
           dotnet tool install -g dotnet-reportgenerator-globaltool
           reportgenerator -reports:coverage/**/coverage.cobertura.xml \
             -targetdir:${{github.workspace}}/code-coverage \
-            -reporttypes:'MarkdownSummaryGithub,Cobertura'
+            -reporttypes:'MarkdownSummaryGithub;Cobertura'
 
       - name: Code Coverage - Create Summary 2
         uses: irongut/CodeCoverageSummary@v1.3.0
