@@ -64,9 +64,9 @@ jobs:
           dotnet test --filter '${{ inputs.unit-tests }}' \
             -c 'Release' --no-build \
             /p:CollectCoverage=true \
-            /p:CoverletOutputFormat=cobertura
-            /p:CoverletOutput='./coverage/'
-            /p:Exclude="[*.*Test*]*"
+            /p:CoverletOutputFormat=cobertura \
+            /p:CoverletOutput='./coverage/' \
+            /p:Exclude="[*.*IntegrationTest*]*" \
             --logger "trx;LogFileName=unit-tests.trx" \
             --results-directory ./coverage
 
