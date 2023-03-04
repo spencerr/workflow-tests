@@ -15,4 +15,4 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.EnforceExtendedAnalyzerRules = 
 build_property.RootNamespace = FeatureSourceGenerators.Tests
-build_property.ProjectDir = c:\Users\Spencer\Documents\GitHub\workflow-tests\FeatureSourceGenerators.Tests\
+build_property.ProjectDir = C:\Users\Spencer\Documents\GitHub\workflow-tests\FeatureSourceGenerators.Tests\
