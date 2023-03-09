@@ -39,7 +39,7 @@ jobs:
         run: |
           echo "${{ toJSON(inputs) }}"
 
-      - name: Build - Service Projects
+      - name: Build - Service Projects 
         uses: spencerr/composite-actions/dotnet-service-build@v0.0.1
 
       # - name: Setup .NET
