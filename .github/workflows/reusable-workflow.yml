@@ -39,28 +39,31 @@ jobs:
         run: |
           echo "${{ toJSON(inputs) }}"
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        if: inputs.dotnet-version != ''
-        with:
-          dotnet-version: ${{ inputs.dotnet-version }}
-
-      - name: Restore Solution
-        working-directory: ${{ inputs.solution-directory }}
-        run: |
-          dotnet restore
-
       - name: Build - Service Projects
-        working-directory: ${{ inputs.solution-directory }}
-        if: inputs.service-project != ''
-        run: |
-          dotnet build ${{ inputs.service-project }} -c 'Release' -p 'any'
+        uses: sritzow/composite-actions/dotnet-service-build@v0.0.1
 
-      - name: Build - Solution
-        working-directory: ${{ inputs.solution-directory }}
-        run: |
-          dotnet restore
-          dotnet build -c 'Release' -p 'any'
+      # - name: Setup .NET
+      #   uses: actions/setup-dotnet@v3
+      #   if: inputs.dotnet-version != ''
+      #   with:
+      #     dotnet-version: ${{ inputs.dotnet-version }}
+
+      # - name: Restore Solution
+      #   working-directory: ${{ inputs.solution-directory }}
+      #   run: |
+      #     dotnet restore
+
+      # - name: Build - Service Projects
+      #   working-directory: ${{ inputs.solution-directory }}
+      #   if: inputs.service-project != ''
+      #   run: |
+      #     dotnet build ${{ inputs.service-project }} -c 'Release' -p 'any'
+
+      # - name: Build - Solution
+      #   working-directory: ${{ inputs.solution-directory }}
+      #   run: |
+      #     dotnet restore
+      #     dotnet build -c 'Release' -p 'any'
 
       # - name: Test - Unit Tests
       #   id: dotnet-unit-test
