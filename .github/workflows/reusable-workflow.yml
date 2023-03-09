@@ -40,7 +40,7 @@ jobs:
           echo "${{ toJSON(inputs) }}"
 
       - name: Build - Service Projects
-        uses: sritzow/composite-actions/dotnet-service-build@v0.0.1
+        uses: spencerr/composite-actions/dotnet-service-build@v0.0.1
 
       # - name: Setup .NET
       #   uses: actions/setup-dotnet@v3
