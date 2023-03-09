@@ -1,6 +1,12 @@
 dotnet-version: 3.1.x
 node-version: 16.15.1
-service-projects:
-  - FeatureSourceGenerators/FeatureSourceGenerators.csproj
-  - FeatureSourceGenerators.Example/FeatureSourceGenerators.Example.csproj
-unit-test-project: FeatureSourceGenerators.Test/FeatureSourceGenerators.Test.csproj
+
+services:
+  - name: source-generator
+    service-project: FeatureSourceGenerators.Example/FeatureSourceGenerators.Example.csproj
+    unit-tests: 'FullyQualifiedName!~IntegrationTests'
+    integration-tests: 'FullyQualifiedName~IntegrationTests'
+    solution-directory: './'
+    dotnet-version: 6.0.x
+    coverage-required: true
+    coverage-threshold: '60 80'
